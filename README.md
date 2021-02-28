@@ -25,6 +25,8 @@ The code is written in Python 3. The following packages must be installed:
 
 In the `3d-models` folder, you can find the 3d-printable gripper as well as a chess set that works well with the gripper. 
 
+The chess pieces should have a different color than the chess board in order for the computer vision module to work well. That's why my board is black and white, while my printed chess set is green and orange. 
+
 The gripper uses the extruder motor to open and close the gripper. My Ender-3 printer has a direct drive extruder, which made it easy to get the gripper to work. I have no idea how I would mount it on a stock Ender-3. 
 
 You will probably have to adapt the 3d model for the gripper for your specific printer. 
