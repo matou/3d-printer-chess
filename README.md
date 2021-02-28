@@ -35,7 +35,7 @@ I printed a simple chess with white PLA directly on the print bed. The files for
 
 This assumes that there is an Octoprint instance controlling your 3d printer. 
 
-In order to use the extruder motor without heating up the nozzle, you need to send the g-code `M302 P1;` to the printer through Octoprint's terminal. This enables cold extrusion. **Make sure that there is no filament in the printer, or you might damage it!**. Not all firmwares support cold extrusion; so you might have to adapt/flash new firmware on the printer. 
+In order to use the extruder motor without heating up the nozzle, you need to send the g-code `M302 P1;` to the printer through Octoprint's terminal. This enables cold extrusion. **Make sure that there is no filament in the printer, or you might damage it!** Not all firmware supports cold extrusion; so you might have to adapt/flash new firmware on the printer. 
 
 The computer vision module assumes that there is a camera mounted above the chess board, with the field A1 being top right and H8 being bottom left in the picture. It doesn't need to be aligned perfectly, as the tool tries to detect the board by itself. 
 
