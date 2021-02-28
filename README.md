@@ -16,7 +16,7 @@ The code is written in Python 3. The following packages must be installed:
 * `numpy`
 * `requests`
 * `opencv-python`
-* `sunfish` -- download the sunfish chess AI from (https://github.com/thomasahle/sunfish)[https://github.com/thomasahle/sunfish] and place `sunfish.py` in the same folder as the other source code
+* `sunfish` -- download the sunfish chess AI from [https://github.com/thomasahle/sunfish](https://github.com/thomasahle/sunfish) and place `sunfish.py` in the same folder as the other source code
 
 
 ### How to set it up
