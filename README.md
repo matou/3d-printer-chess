@@ -6,6 +6,9 @@ The code sends commands to an Octoprint instance to move the gripper.
 
 I've documented this project on [YouTube](https://youtu.be/6b2As388-Ro). 
 
+This repository isn't in the cleanest state. If you're interested in using this and need it to be maintained better, let me know by opening an issue. 
+Also, in case you enjoy this a lot, you might consider supporting me on [Patreon](https://patreon.com/MatouMakes) :)
+
 ### Prerequisites for the code
 
 The code is written in Python 3. The following packages must be installed:
