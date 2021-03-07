@@ -46,7 +46,7 @@ class Octoprint:
         print('To close the gripper with the extruder motor, cold extrusion must be enabled (make sure there is no filament in the printer!!!). Send g-code command \'M302 P1;\' to your printer through the Octoprint terminal. Not all firmwares support this command. You might need to adapt your firmware accordingly.')
 
     def home(self):
-    """Homes the x/y/z axis of the printer. Somehow this doesn't always work for me."""
+        """Homes the x/y/z axis of the printer. Somehow this doesn't always work for me."""
         command = { 'command': 'home', 'axes': 'x, y, z' }
         r = requests.post(self.printhead, headers=self.headers, json=command)
         print('sent homing command')
@@ -54,8 +54,8 @@ class Octoprint:
             time.sleep(self.sleep_home)
 
     def move(self, x, y):
-    """Moves the gripper over a given chess field.
-       Expects two integers, e.g., for field A1, call move(1,1), for C5 call move(3,5)."""
+        """Moves the gripper over a given chess field.
+        Expects two integers, e.g., for field A1, call move(1,1), for C5 call move(3,5)."""
 
         command = {'command': 'jog', 
                     'x': self.a1[0] + (x-1)*self.field_size,
@@ -64,7 +64,7 @@ class Octoprint:
         r = requests.post(self.printhead, headers=self.headers, json=command)
 
     def remove(self, x, y, pawn=False):
-    """ Removes the chess piece at the given coordinates. 
+        """ Removes the chess piece at the given coordinates. 
 
         x -- the x-coordinate. A,B,C,...,H corresponds to 1,2,3,...,8
         y -- the y-coordinate. 1,2,3,..,8
@@ -84,7 +84,7 @@ class Octoprint:
             time.sleep(self.sleep_remove)
 
     def move_down(self):
-    """Moves the gripper down to the board"""
+        """Moves the gripper down to the board"""
         command = {'command': 'jog',
                     'z': self.min_z, 
                     'speed': 5000,
@@ -92,7 +92,7 @@ class Octoprint:
         r = requests.post(self.printhead, headers=self.headers, json=command)
 
     def grab(self, pawn=False):
-    """Grabs the figure underneath the current gripper position.
+        """Grabs the figure underneath the current gripper position.
 
         pawn -- whether the piece to move is a pawn"""
         command = {'command': 'jog',
@@ -113,10 +113,10 @@ class Octoprint:
 
         
     def put_down(self, pawn=False):
-    """Puts down a carried chess piece at the current position. 
+        """Puts down a carried chess piece at the current position. 
 
-    pawn -- whether the carried piece is a pawn (default: False)
-    """
+        pawn -- whether the carried piece is a pawn (default: False)
+        """
         #x_move = -1-self.pawn_grab_ex_offset/2 if pawn else -1
         command = {'command': 'jog',
                     'x': -1,
@@ -145,7 +145,7 @@ class Octoprint:
         r = requests.post(self.printhead, headers=self.headers, json=command)
 
     def grab_at(self, x, y, pawn=False):
-    """Grab the chess piece at the given position. 
+        """Grab the chess piece at the given position. 
 
         x -- the x-coordinate. A,B,C,...,H corresponds to 1,2,3,...,8
         y -- the y-coordinate. 1,2,3,..,8
@@ -156,7 +156,7 @@ class Octoprint:
         self.grab(pawn=pawn)
 
     def put_down_at(self, x, y, pawn=False):
-    """Place the chess piece at the given position.
+        """Place the chess piece at the given position.
 
         x -- the x-coordinate. A,B,C,...,H corresponds to 1,2,3,...,8
         y -- the y-coordinate. 1,2,3,..,8
@@ -166,7 +166,7 @@ class Octoprint:
         self.put_down(pawn=pawn)
 
     def from_to(self, x0,y0,x1,y1, pawn=False):
-    """Move a chess piece from a given field on the board to another given field on the board. 
+        """Move a chess piece from a given field on the board to another given field on the board. 
 
         x0 -- the x-coordinate to pick up the piece. A,B,C,...,H corresponds to 1,2,3,...,8
         y0 -- the y-coordinate.to pick up the piece 1,2,3,..,8
@@ -182,7 +182,7 @@ class Octoprint:
      
 
     def park(self):
-    """Move to a parking position that does not obstruct the camera view."""
+        """Move to a parking position that does not obstruct the camera view."""
         command = {'command': 'jog',
                     'z': self.z_park,
                     'speed': 5000, 
@@ -198,7 +198,7 @@ class Octoprint:
             time.sleep(self.sleep_park)
 
     def tantrum(self):
-    """Do some random movements that throw chess pieces from the board"""
+        """Do some random movements that throw chess pieces from the board"""
         self.move(8,4)
         self.move_down()
         self.move(1,2)
@@ -206,7 +206,7 @@ class Octoprint:
         self.move(1,7)
 
     def shake(self):
-    """Do some weird movements"""
+        """Do some weird movements"""
         self.move(5,5)
         self.move_down()
         for i in range(10):
@@ -214,7 +214,7 @@ class Octoprint:
             self.move(4,5)
 
     def prod(self):
-    """Prod the white king from the board"""
+        """Prod the white king from the board"""
         command = {'command': 'jog',
                     'x': 147,
                     'y': 70,
@@ -250,9 +250,4 @@ if __name__ == '__main__':
 
     o = Octoprint(api_key=secrets.api_key, sleep=False)
     
-    o.park()
-    o.move(1,1)
-    o.grab()
-    o.move(8,8)
-    o.put_down()
-
+    o.from_to(1,1,4,4)
